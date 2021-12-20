@@ -20,13 +20,18 @@ class App extends Component {
                   <Login />
                 </Route>
               </Switch>
+              <Switch>
+                <Route path="/" exact>
+                  {this.props.loggedIn ? <Login /> : <Home />}
+                </Route>
+              </Switch>
             </div>
           ) : (
             <div>
               <Header />
               <Switch>
                 <Route path="/" exact>
-                  <Home />
+                  {this.props.loggedIn === null ? <Login /> : <Home />}
                 </Route>
               </Switch>
               <Switch>

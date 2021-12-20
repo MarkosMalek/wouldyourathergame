@@ -3,7 +3,7 @@ let users = {
     id: "sarahedo",
     name: "Sarah Edo",
     avatarURL:
-      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Fbusinesswoman-character-avatar-icon-vector-12800169&psig=AOvVaw14lRYQPhZgUA6FTW4roVTk&ust=1639937964759000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKiU5cD77fQCFQAAAAAdAAAAABAD",
+      "https://images.unsplash.com/photo-1634896941598-b6b500a502a7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGF2YXRhcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
     answers: {
       "8xf0y6ziyjabvozdd253nd": "optionOne",
       "6ni6ok3ym7mf1p33lnez": "optionTwo",
@@ -16,7 +16,7 @@ let users = {
     id: "tylermcginnis",
     name: "Tyler McGinnis",
     avatarURL:
-      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Fman-avatar-icon-flat-vector-19152370&psig=AOvVaw14lRYQPhZgUA6FTW4roVTk&ust=1639937964759000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKiU5cD77fQCFQAAAAAdAAAAABAI",
+      "https://images.unsplash.com/photo-1634193295627-1cdddf751ebf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
     answers: {
       vthrdm985a262al8qx3do: "optionOne",
       xj352vofupe1dqz9emx13r: "optionTwo",
@@ -27,7 +27,7 @@ let users = {
     id: "johndoe",
     name: "John Doe",
     avatarURL:
-      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Fman-avatar-icon-flat-vector-19152370&psig=AOvVaw14lRYQPhZgUA6FTW4roVTk&ust=1639937964759000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKiU5cD77fQCFQAAAAAdAAAAABAI",
+      "https://images.unsplash.com/photo-1634193295627-1cdddf751ebf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
     answers: {
       xj352vofupe1dqz9emx13r: "optionOne",
       vthrdm985a262al8qx3do: "optionTwo",

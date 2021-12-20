@@ -15,7 +15,6 @@ class Login extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.dispatch(logIn(this.state.selected));
-    console.log(this.state.selected);
   }
   handleChange = (e) => {
     e.preventDefault();
@@ -25,7 +24,13 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <h1>Log in</h1>
+        <div className="container">
+          <h2>
+            You Are Not Logged In
+            <br /> Please Choose A User
+          </h2>
+        </div>
+
         <Container>
           <Row xs={12} className="container">
             <Col xs="auto" className="my-1" size="lg">
@@ -61,7 +66,7 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps({ users, authenticate }) {
-  return { users: Object.keys(users), authenticate };
+function mapStateToProps({ users }) {
+  return { users: Object.keys(users) };
 }
 export default connect(mapStateToProps)(Login);

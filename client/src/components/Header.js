@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav, Container, Figure } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { logOut } from "../redux/actions/authUser";
 
@@ -31,8 +31,18 @@ function Header(props) {
           </Nav>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
+            <Figure.Image
+              roundedCircle
+              src={
+                props.users.filter((user) => user.id === props.authentedUser)[0]
+                  .avatarURL
+              }
+              width="30"
+              height="30"
+              alt={props.authentedUser + " image"}
+            />
             <Navbar.Text>
-              Signed in as:<strong> {props.authentedUser}</strong>
+              <strong> {props.authentedUser} </strong>
             </Navbar.Text>
             <Nav.Item>
               <Nav.Link
@@ -51,8 +61,10 @@ function Header(props) {
   );
 }
 
-function mapStateToProps({ authenticate }) {
+function mapStateToProps({ authenticate, users }) {
   return {
+    authenticate,
+    users: authenticate ? Object.entries(users).map((user) => user[1]) : null,
     loggedIn: authenticate === null,
     authentedUser: authenticate ? authenticate.state : null,
   };
