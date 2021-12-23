@@ -5,6 +5,7 @@ import Home from "./views/Home";
 import NewQuestion from "./views/NewQuestion";
 import LeaderBoard from "./views/LeaderBoard";
 import Login from "./views/Login";
+import Erorr from "./views/Erorr";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -28,19 +29,37 @@ class App extends Component {
             </div>
           ) : (
             <div>
-              <Header />
+              <Switch>
+                <Route path="/error" exact>
+                  <Erorr />
+                </Route>
+              </Switch>
+              <Switch>
+                <Route path="/login" exact>
+                  <Login />
+                </Route>
+              </Switch>
               <Switch>
                 <Route path="/" exact>
-                  {this.props.loggedIn === null ? <Login /> : <Home />}
+                  {this.props.loggedIn === null ? (
+                    <Login />
+                  ) : (
+                    <div>
+                      <Header />
+                      <Home />
+                    </div>
+                  )}
                 </Route>
               </Switch>
               <Switch>
                 <Route path="/newQuestion" exact>
+                  <Header />
                   <NewQuestion />
                 </Route>
               </Switch>
               <Switch>
                 <Route path="/leaderboard" exact>
+                  <Header />
                   <LeaderBoard />
                 </Route>
               </Switch>

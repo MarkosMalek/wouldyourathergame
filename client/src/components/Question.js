@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 export default function Question({ question, users }) {
   return (
     <div>
-      <Card style={{ width: "25em" }}>
-        <Card.Header>{question.author} Ask's: </Card.Header>
+      <Card style={{ width: "25em", marginBottom: "15%" }}>
+        <Card.Header>{question.author} Ask's : </Card.Header>
         <Card.Body>
           <Row>
             <Col>

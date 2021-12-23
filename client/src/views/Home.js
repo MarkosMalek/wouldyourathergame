@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Col, ListGroup, Tab } from "react-bootstrap";
 import { getQuestions } from "../redux/actions/quistions";
-import Question from "../components/Question";
-
+import QuestionsList from "../components/QuestionsList";
 class Home extends Component {
   componentDidMount() {
     this.props.dispatch(getQuestions());
@@ -16,10 +16,34 @@ class Home extends Component {
   );
   render() {
     return (
-      <div>
-        {this.props.questions.map((q) => (
-          <Question key={q.id} question={q} users={this.props.users} />
-        ))}
+      <div
+        className="container"
+        style={{
+          width: "29em",
+          flexDirection: "column",
+          marginTop: "3%",
+        }}
+      >
+        <Tab.Container defaultActiveKey="#unAnswered">
+          <Col sm={12}>
+            <ListGroup horizontal>
+              <ListGroup.Item action href="#unAnswered">
+                unAnswered
+              </ListGroup.Item>
+              <ListGroup.Item action href="#Answered">
+                Answered
+              </ListGroup.Item>
+            </ListGroup>
+          </Col>
+          <Col sm={12}>
+            <Tab.Content>
+              <Tab.Pane eventKey="#unAnswered">
+                <QuestionsList />
+              </Tab.Pane>
+              <Tab.Pane eventKey="#Answered">Answered</Tab.Pane>
+            </Tab.Content>
+          </Col>
+        </Tab.Container>
       </div>
     );
   }
