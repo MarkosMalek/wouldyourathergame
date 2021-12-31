@@ -50,3 +50,8 @@
   align-items: center;
   justify-content: center;
 }
+.vLine {
+  border-left: 0.2em solid rgb(196, 199, 202);
+  height: 90%;
+  position: center;
+}

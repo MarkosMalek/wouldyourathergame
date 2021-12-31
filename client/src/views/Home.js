@@ -4,16 +4,48 @@ import { Col, ListGroup, Tab } from "react-bootstrap";
 import { getQuestions } from "../redux/actions/quistions";
 import QuestionsList from "../components/QuestionsList";
 class Home extends Component {
-  componentDidMount() {
-    this.props.dispatch(getQuestions());
-  }
-  unAnsered = this.props.questions.filter(
+  questionOfEveryOneElse = this.props.questions.filter(
     (q) => q.author !== this.props.authentedUser
+  );
+  unasnweredQuestionsOptionOne = this.questionOfEveryOneElse
+    .map((q) =>
+      q.optionOne.votes.map((voteArrs) =>
+        voteArrs !== this.props.authentedUser ? q : null
+      )
+    )
+    .map((q) => (q.length > 0 ? q[0] : null))
+    .filter((ele) => ele);
+  unasnweredQuestionsOptionTwo = this.questionOfEveryOneElse
+    .map((q) =>
+      q.optionTwo.votes.map((voteArrs) =>
+        voteArrs !== this.props.authentedUser ? q : null
+      )
+    )
+    .map((q) => (q.length > 0 ? q[0] : null))
+    .filter((ele) => ele);
+  unasnweredQuestions = this.unasnweredQuestionsOptionOne.concat(
+    this.unasnweredQuestionsOptionTwo
+  );
+  asnweredQuestionsOptionOne = this.questionOfEveryOneElse
+    .map((q) =>
+      q.optionOne.votes.map((voteArrs) =>
+        voteArrs === this.props.authentedUser ? q : null
+      )
+    )
+    .map((q) => (q.length > 0 ? q[0] : null))
+    .filter((ele) => ele);
+  asnweredQuestionsOptionTwo = this.questionOfEveryOneElse
+    .map((q) =>
+      q.optionTwo.votes.map((voteArrs) =>
+        voteArrs === this.props.authentedUser ? q : null
+      )
+    )
+    .map((q) => (q.length > 0 ? q[0] : null))
+    .filter((ele) => ele);
+  asnweredQuestions = this.asnweredQuestionsOptionOne.concat(
+    this.asnweredQuestionsOptionTwo
   );
 
-  ansered = this.props.questions.filter(
-    (q) => q.author !== this.props.authentedUser
-  );
   render() {
     return (
       <div
@@ -38,9 +70,15 @@ class Home extends Component {
           <Col sm={12}>
             <Tab.Content>
               <Tab.Pane eventKey="#unAnswered">
-                <QuestionsList />
+                <QuestionsList
+                  questions={[...new Set(this.unasnweredQuestions)]}
+                />
               </Tab.Pane>
-              <Tab.Pane eventKey="#Answered">Answered</Tab.Pane>
+              <Tab.Pane eventKey="#Answered">
+                <QuestionsList
+                  questions={[...new Set(this.asnweredQuestions)]}
+                />
+              </Tab.Pane>
             </Tab.Content>
           </Col>
         </Tab.Container>

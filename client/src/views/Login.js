@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Dropdown, Container, Button, Row, Col, Card } from "react-bootstrap";
+import { getQuestions } from "../redux/actions/quistions";
 import { getUsers } from "../redux/actions/users";
 import { logIn } from "../redux/actions/authUser";
 import { Link } from "react-router-dom";
@@ -11,6 +12,7 @@ class Login extends Component {
   };
   componentDidMount() {
     this.props.dispatch(getUsers());
+    this.props.dispatch(getQuestions());
   }
   handleSubmit() {
     this.props.dispatch(logIn(this.state.selected));
@@ -39,7 +41,10 @@ class Login extends Component {
             <Row xs={12} className="container">
               <Col xs="auto" className="my-1" size="lg">
                 <Dropdown>
-                  <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  <Dropdown.Toggle
+                    variant="outline-primary"
+                    id="dropdown-basic"
+                  >
                     {this.state.selected}
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
@@ -59,7 +64,7 @@ class Login extends Component {
               <Col xs="auto" className="my-1">
                 <Dropdown.Item as={Button} onClick={() => this.handleSubmit()}>
                   <Button
-                    variant="danger"
+                    variant="success"
                     as={Link}
                     to={
                       this.state.selected === "choose a user" ? "/error" : "/"

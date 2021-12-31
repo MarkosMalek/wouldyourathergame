@@ -5,19 +5,21 @@ import Question from "./Question";
 class QuestionsList extends Component {
   render() {
     return (
-      <div style={{ padding: "5%" }}>
+      <div style={{ padding: "4.1%" }}>
         {this.props.questions.map((q) => (
-          <Question key={q.id} question={q} users={this.props.users} />
+          <Question
+            key={q.id}
+            question={q}
+            user={this.props.users.filter((user) => user.id === q.author)}
+          />
         ))}
       </div>
     );
   }
 }
-function mapStateToProps({ authenticate, users, questions }) {
+
+function mapStateToProps({ authenticate, users }) {
   return {
-    questions: authenticate
-      ? Object.entries(questions).map((question) => question[1])
-      : null,
     users: authenticate ? Object.entries(users).map((user) => user[1]) : null,
     authentedUser: authenticate ? authenticate.state : null,
   };

@@ -6,6 +6,7 @@ import NewQuestion from "./views/NewQuestion";
 import LeaderBoard from "./views/LeaderBoard";
 import Login from "./views/Login";
 import Erorr from "./views/Erorr";
+import QuestionView from "./views/QuestionView";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -26,6 +27,22 @@ class App extends Component {
                   {this.props.loggedIn ? <Login /> : <Home />}
                 </Route>
               </Switch>
+              <Switch>
+                <Route
+                  path="/Question/:id"
+                  exact
+                  render={
+                    this.props.loggedIn
+                      ? () => <Login />
+                      : (routeProps) => (
+                          <div>
+                            <Header />
+                            <QuestionView {...routeProps} />
+                          </div>
+                        )
+                  }
+                ></Route>
+              </Switch>
             </div>
           ) : (
             <div>
@@ -41,7 +58,7 @@ class App extends Component {
               </Switch>
               <Switch>
                 <Route path="/" exact>
-                  {this.props.loggedIn === null ? (
+                  {this.props.loggedIn ? (
                     <Login />
                   ) : (
                     <div>
@@ -62,6 +79,22 @@ class App extends Component {
                   <Header />
                   <LeaderBoard />
                 </Route>
+              </Switch>
+              <Switch>
+                <Route
+                  path="/Question/:id"
+                  exact
+                  render={
+                    this.props.loggedIn
+                      ? () => <Login />
+                      : (routeProps) => (
+                          <div>
+                            <Header />
+                            <QuestionView {...routeProps} />
+                          </div>
+                        )
+                  }
+                ></Route>
               </Switch>
             </div>
           )}
