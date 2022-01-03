@@ -9,6 +9,7 @@ import Erorr from "./views/Erorr";
 import QuestionView from "./views/QuestionView";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
+import QuestionAnswer from "./views/QuestionAnswer";
 
 class App extends Component {
   render() {
@@ -42,6 +43,11 @@ class App extends Component {
                         )
                   }
                 ></Route>
+              </Switch>
+              <Switch>
+                <Route path="/Question/:id/answer" exact>
+                  <QuestionAnswer />
+                </Route>
               </Switch>
             </div>
           ) : (
@@ -94,6 +100,13 @@ class App extends Component {
                           </div>
                         )
                   }
+                ></Route>
+              </Switch>
+              <Switch>
+                <Route
+                  path="/Question/:id/answer"
+                  exact
+                  render={(routeProps) => <QuestionAnswer {...routeProps} />}
                 ></Route>
               </Switch>
             </div>

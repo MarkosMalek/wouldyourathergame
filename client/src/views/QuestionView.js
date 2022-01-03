@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { saveNewAnswer } from "../redux/actions/quistions";
+import { saveAnswerToUser } from "../redux/actions/users";
 import { Figure, Card, Row, Col, Button, Form } from "react-bootstrap";
 
 function QuestionView(props) {
+  const [selected, setSelected] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.dispatch(
+      saveNewAnswer(props.authentedUser, question[0].id, selected)
+    );
+    props.dispatch(
+      saveAnswerToUser(props.authentedUser, question[0].id, selected)
+    );
+    props.history.push(`/Question/${question[0].id}/answer`);
+  };
   const question = props.questions.filter(
     (q) => q.id === props.match.params.id
   );
   const user = props.users.filter((user) => user.id === question[0].author);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(e.target.value);
-  };
+
   return (
     <div className="container">
       <Card style={{ width: "35em", marginBottom: "15%", marginTop: "8%" }}>
@@ -41,7 +52,9 @@ function QuestionView(props) {
                   name="answer"
                   type="radio"
                   label={question[0].optionOne.text}
-                  value={question[0].optionOne.text}
+                  value="optionOne"
+                  checked={selected === "optionOne"}
+                  onChange={(e) => setSelected(e.target.value)}
                 />
 
                 <Form.Check
@@ -51,9 +64,11 @@ function QuestionView(props) {
                   name="answer"
                   type="radio"
                   label={question[0].optionTwo.text}
-                  value={question[0].optionTwo.text}
+                  value="optionTwo"
+                  checked={selected === "optionTwo"}
+                  onChange={(e) => setSelected(e.target.value)}
                 />
-                <Button onSubmit={(e) => handleSubmit(e)}>Submit</Button>
+                <Button onClick={(e) => handleSubmit(e)}>Submit</Button>
               </Form.Group>
             </Col>
           </Row>
@@ -68,7 +83,7 @@ function mapStateToProps({ authenticate, users, questions }) {
       ? Object.entries(questions).map((question) => question[1])
       : null,
     users: authenticate ? Object.entries(users).map((user) => user[1]) : null,
-
+    usersrow: users,
     authentedUser: authenticate ? authenticate.state : null,
   };
 }
