@@ -37,6 +37,9 @@ function Header(props) {
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <div style={{ display: "flex", marginRight: "2%", width: "15em" }}>
+              <Navbar.Text style={{ marginRight: "5%" }}>
+                Hello,<strong> {authentedUser[0].name}</strong>
+              </Navbar.Text>
               <Figure.Image
                 roundedCircle
                 src={authentedUser[0].avatarURL}
@@ -44,13 +47,9 @@ function Header(props) {
                 height="30"
                 alt={authentedUser[0].name + " image"}
               />
-
-              <Navbar.Text style={{ marginLeft: "10%" }}>
-                Hello, <strong>{authentedUser[0].name}</strong>
-              </Navbar.Text>
             </div>
 
-            <Nav.Item style={{ marginLeft: "10%" }}>
+            <Nav.Item style={{ marginRight: "10%" }}>
               <Button
                 size="sm"
                 variant="danger"

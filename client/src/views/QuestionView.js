@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { saveNewAnswer } from "../redux/actions/quistions";
 import { saveAnswerToUser } from "../redux/actions/users";
@@ -15,7 +14,12 @@ function QuestionView(props) {
     props.dispatch(
       saveAnswerToUser(props.authentedUser, question[0].id, selected)
     );
-    props.history.push(`/Question/${question[0].id}/answer`);
+    selected === ""
+      ? props.history.push("/error")
+      : setTimeout(
+          () => props.history.push(`/Question/${question[0].id}/answer`),
+          200
+        );
   };
   const question = props.questions.filter(
     (q) => q.id === props.match.params.id
@@ -24,7 +28,7 @@ function QuestionView(props) {
 
   return (
     <div className="container">
-      <Card style={{ width: "35em", marginBottom: "15%", marginTop: "8%" }}>
+      <Card style={{ width: "35em", marginBottom: "10%", marginTop: "8%" }}>
         <Card.Header>{user[0].name} Ask's : </Card.Header>
         <Card.Body>
           <Row>

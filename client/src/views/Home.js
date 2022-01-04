@@ -11,7 +11,7 @@ class Home extends Component {
       this.setState({
         loading: false,
       });
-    }, 500);
+    }, 50);
   }
 
   render() {
@@ -39,14 +39,20 @@ class Home extends Component {
             <Tab.Content>
               <Tab.Pane eventKey="#unAnswered">
                 {this.props.UnAnsweredQuestion.length > 0 ? (
-                  <QuestionsList questions={this.props.UnAnsweredQuestion} />
+                  <QuestionsList
+                    questions={this.props.UnAnsweredQuestion}
+                    isAnswered={false}
+                  />
                 ) : (
                   <div>All Questions had been answered</div>
                 )}
               </Tab.Pane>
               <Tab.Pane eventKey="#Answered">
                 {this.props.asnweredQuestions.length > 0 ? (
-                  <QuestionsList questions={this.props.asnweredQuestions} />
+                  <QuestionsList
+                    questions={this.props.asnweredQuestions}
+                    isAnswered={true}
+                  />
                 ) : (
                   <div>No Question had been answered</div>
                 )}

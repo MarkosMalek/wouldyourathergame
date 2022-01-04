@@ -45,9 +45,20 @@ class App extends Component {
                 ></Route>
               </Switch>
               <Switch>
-                <Route path="/Question/:id/answer" exact>
-                  <QuestionAnswer />
-                </Route>
+                <Route
+                  path="/Question/:id/answer"
+                  exact
+                  render={
+                    this.props.loggedIn
+                      ? () => <Login />
+                      : (routeProps) => (
+                          <div>
+                            <Header />
+                            <QuestionAnswer {...routeProps} />
+                          </div>
+                        )
+                  }
+                ></Route>
               </Switch>
             </div>
           ) : (
@@ -106,7 +117,16 @@ class App extends Component {
                 <Route
                   path="/Question/:id/answer"
                   exact
-                  render={(routeProps) => <QuestionAnswer {...routeProps} />}
+                  render={
+                    this.props.loggedIn
+                      ? () => <Login />
+                      : (routeProps) => (
+                          <div>
+                            <Header />
+                            <QuestionAnswer {...routeProps} />
+                          </div>
+                        )
+                  }
                 ></Route>
               </Switch>
             </div>

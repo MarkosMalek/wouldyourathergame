@@ -1,15 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
-
+import { useHistory } from "react-router-dom";
 export default function Erorr() {
+  const history = useHistory();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    history.goBack();
+  };
   return (
     <div className="container">
       <Card style={{ width: "25em" }}>
         <Card.Header>An Error Happend Please Go Back</Card.Header>
-        <Button as={Link} to="/login">
-          back
-        </Button>
+        <Button onClick={(e) => handleClick(e)}>back</Button>
       </Card>
     </div>
   );

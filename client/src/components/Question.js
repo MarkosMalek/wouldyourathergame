@@ -1,10 +1,10 @@
 import React from "react";
 import { Figure, Card, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-export default function Question({ question, user }) {
+export default function Question({ question, user, isAnswered }) {
   return (
     <div>
-      <Card style={{ width: "25em", marginBottom: "15%" }}>
+      <Card style={{ width: "25em", marginBottom: "10%" }}>
         <Card.Header>{user[0].name} Ask's : </Card.Header>
         <Card.Body>
           <Row>
@@ -27,7 +27,15 @@ export default function Question({ question, user }) {
                 {question.optionOne.text.substr(0, 10) + "..."}
               </Card.Text>
             </Col>
-            <Button variant="info" as={Link} to={`/Question/${question.id}`}>
+            <Button
+              variant="info"
+              as={Link}
+              to={
+                !isAnswered
+                  ? `/Question/${question.id}`
+                  : `/Question/${question.id}/answer`
+              }
+            >
               View Question
             </Button>
           </Row>

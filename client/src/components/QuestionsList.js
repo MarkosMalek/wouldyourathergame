@@ -10,6 +10,7 @@ class QuestionsList extends Component {
           <Question
             key={q.id}
             question={q}
+            isAnswered={this.props.isAnswered}
             user={this.props.users.filter((user) => user.id === q.author)}
           />
         ))}
@@ -18,10 +19,11 @@ class QuestionsList extends Component {
   }
 }
 
-function mapStateToProps({ authenticate, users }) {
+function mapStateToProps({ authenticate, users }, { isAnswered }) {
   return {
     users: authenticate ? Object.entries(users).map((user) => user[1]) : null,
     authentedUser: authenticate ? authenticate.state : null,
+    isAnswered,
   };
 }
 export default connect(mapStateToProps)(QuestionsList);
