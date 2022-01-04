@@ -1,5 +1,5 @@
-import { GETUSERS, SAVEANSWERTOUSERS } from "../Types";
-import { _getUsers, _saveQuestionAnswer } from "../../_DATA";
+import { GETUSERS, SAVEANSWERTOUSERS, ADDNEWQUESTIONSTOUSERS } from "../Types";
+import { _getUsers, _saveQuestionAnswer, _saveQuestion } from "../../_DATA";
 export const getUsers = () => (dispatch) => {
   return _getUsers().then((users) => {
     dispatch({
@@ -17,6 +17,15 @@ export const saveAnswerToUser = (authedUser, qid, answer) => (dispatch) => {
         qid,
         answer,
       },
+    });
+  });
+};
+
+export const addNewQuestionToUsers = (question) => (dispatch) => {
+  _saveQuestion(question).then((formatedquestion) => {
+    dispatch({
+      type: ADDNEWQUESTIONSTOUSERS,
+      payload: formatedquestion,
     });
   });
 };

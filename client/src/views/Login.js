@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Dropdown, Container, Button, Row, Col, Card } from "react-bootstrap";
-import { getQuestions } from "../redux/actions/quistions";
+import { getQuestions } from "../redux/actions/questions";
 import { getUsers } from "../redux/actions/users";
 import { logIn } from "../redux/actions/authUser";
 import { Link } from "react-router-dom";

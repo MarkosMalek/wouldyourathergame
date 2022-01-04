@@ -1,7 +1,67 @@
 import React, { Component } from "react";
+import { Form, Card, Button } from "react-bootstrap";
+import { connect } from "react-redux";
+import { addNewQuestionToQuestions } from "../redux/actions/questions";
+import { addNewQuestionToUsers } from "../redux/actions/users";
 
-export default class NewQuestion extends Component {
+class NewQuestion extends Component {
+  state = {
+    optionOne: "",
+    optionTwo: "",
+  };
+
+  handleClick() {
+    const question = {
+      optionOne: this.state.optionOne,
+      optionTwo: this.state.optionTwo,
+      author: this.props.authenticatedUser,
+    };
+    console.log(question);
+    this.props.dispatch(addNewQuestionToQuestions(question));
+    this.props.dispatch(addNewQuestionToUsers(question));
+  }
   render() {
-    return <div>New Question Component</div>;
+    return (
+      <div className="container">
+        <Card style={{ width: "20em", marginTop: "2%" }}>
+          <Card.Header style={{ display: "flex", fontSize: "1.5em" }}>
+            Create New Question
+          </Card.Header>
+          <Form style={{ padding: "2%" }}>
+            <Form.Label
+              style={{ display: "flex", color: "rgba(0, 0, 0, 0.451)" }}
+            >
+              complete the Question
+            </Form.Label>
+            <Form.Group className="mb-3">
+              <Form.Label style={{ display: "flex", fontSize: "1.2em" }}>
+                would you rather ...
+              </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter OptionOne Text Here"
+                onChange={(e) => this.setState({ optionOne: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Or</Form.Label>
+              <Form.Control
+                type="Text"
+                placeholder="Enter OptionTwo Text Here"
+                onChange={(e) => this.setState({ optionTwo: e.target.value })}
+              />
+            </Form.Group>
+          </Form>
+          <Button onClick={() => this.handleClick()}>Add Question</Button>
+        </Card>
+      </div>
+    );
   }
 }
+
+function mapStateToProps({ authenticate }) {
+  return {
+    authenticatedUser: authenticate.state,
+  };
+}
+export default connect(mapStateToProps)(NewQuestion);

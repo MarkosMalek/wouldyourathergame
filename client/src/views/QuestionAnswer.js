@@ -18,7 +18,9 @@ function QuestionAnswer(props) {
   return (
     <div className="container">
       <Card style={{ width: "auto", marginBottom: "15%", marginTop: "2%" }}>
-        <Card.Header>{user[0].name} Ask's : </Card.Header>
+        <Card.Header style={{ display: "flex", fontSize: "1.5em" }}>
+          Asked By {user[0].name}
+        </Card.Header>
         <Card.Body>
           <Row>
             <Col xs={5}>
@@ -50,6 +52,7 @@ function QuestionAnswer(props) {
               >
                 {answer() === "optionOne" && (
                   <img
+                    alt="activeTag"
                     src="/attachment_96694118.png"
                     className={"activeAvatar"}
                   />
@@ -84,6 +87,7 @@ function QuestionAnswer(props) {
               >
                 {answer() === "optionTwo" && (
                   <img
+                    alt="activeTag"
                     src="/attachment_96694118.png"
                     className={"activeAvatar"}
                   />

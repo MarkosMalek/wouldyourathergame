@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { saveNewAnswer } from "../redux/actions/quistions";
+import { saveNewAnswer } from "../redux/actions/questions";
 import { saveAnswerToUser } from "../redux/actions/users";
 import { Figure, Card, Row, Col, Button, Form } from "react-bootstrap";
 
