@@ -1,8 +1,4 @@
-import {
-  GETQUESTIONS,
-  SAVEANSWERTOQUESTIONS,
-  ADDNEWQUESTIONSTOQUESTIONS,
-} from "../Types";
+import { GETQUESTIONS, SAVEANSWERTOQUESTIONS } from "../Types";
 export default function questions(state = {}, action) {
   switch (action.type) {
     case GETQUESTIONS:
@@ -23,12 +19,7 @@ export default function questions(state = {}, action) {
           },
         },
       };
-    case ADDNEWQUESTIONSTOQUESTIONS:
-      console.log(action.payload);
-      return {
-        ...state,
-        [action.payload.id]: action.payload,
-      };
+
     default:
       return state;
   }

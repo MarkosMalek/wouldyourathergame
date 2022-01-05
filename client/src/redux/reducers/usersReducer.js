@@ -1,4 +1,4 @@
-import { GETUSERS, SAVEANSWERTOUSERS, ADDNEWQUESTIONSTOUSERS } from "../Types";
+import { GETUSERS, SAVEANSWERTOUSER } from "../Types";
 export default function users(state = {}, action) {
   switch (action.type) {
     case GETUSERS:
@@ -6,7 +6,7 @@ export default function users(state = {}, action) {
         ...state,
         ...action.payload,
       };
-    case SAVEANSWERTOUSERS:
+    case SAVEANSWERTOUSER:
       return {
         ...state,
         [action.payload.authedUser]: {
@@ -15,17 +15,6 @@ export default function users(state = {}, action) {
             ...state[action.payload.authedUser].answers,
             [action.payload.qid]: action.payload.answer,
           },
-        },
-      };
-    case ADDNEWQUESTIONSTOUSERS:
-      console.log(action.payload);
-      return {
-        ...state,
-        [action.payload.author]: {
-          ...state[action.payload.author],
-          questions: state[action.payload.author].questions.concat([
-            action.payload.id,
-          ]),
         },
       };
     default:

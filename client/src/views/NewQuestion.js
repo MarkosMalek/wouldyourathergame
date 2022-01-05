@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Form, Card, Button } from "react-bootstrap";
 import { connect } from "react-redux";
-import { addNewQuestionToQuestions } from "../redux/actions/questions";
-import { addNewQuestionToUsers } from "../redux/actions/users";
+import { addNewQuestion } from "../redux/actions/shared";
 
 class NewQuestion extends Component {
   state = {
@@ -12,13 +11,11 @@ class NewQuestion extends Component {
 
   handleClick() {
     const question = {
-      optionOne: this.state.optionOne,
-      optionTwo: this.state.optionTwo,
+      optionOneText: this.state.optionOne,
+      optionTwoText: this.state.optionTwo,
       author: this.props.authenticatedUser,
     };
-    console.log(question);
-    this.props.dispatch(addNewQuestionToQuestions(question));
-    this.props.dispatch(addNewQuestionToUsers(question));
+    this.props.dispatch(addNewQuestion(question));
   }
   render() {
     return (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { saveNewAnswer } from "../redux/actions/questions";
+import { saveAnswerToQuestions } from "../redux/actions/questions";
 import { saveAnswerToUser } from "../redux/actions/users";
 import { Figure, Card, Row, Col, Button, Form } from "react-bootstrap";
 
@@ -9,17 +9,14 @@ function QuestionView(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.dispatch(
-      saveNewAnswer(props.authentedUser, question[0].id, selected)
+      saveAnswerToQuestions(props.authentedUser, question[0].id, selected)
     );
     props.dispatch(
       saveAnswerToUser(props.authentedUser, question[0].id, selected)
     );
     selected === ""
       ? props.history.push("/error")
-      : setTimeout(
-          () => props.history.push(`/Question/${question[0].id}/answer`),
-          200
-        );
+      : props.history.push(`/Question/${question[0].id}/answer`);
   };
   const question = props.questions.filter(
     (q) => q.id === props.match.params.id
