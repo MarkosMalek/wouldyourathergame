@@ -60,6 +60,18 @@ class App extends Component {
                   }
                 ></Route>
               </Switch>
+              <Switch>
+                <Route path="/newQuestion" exact>
+                  {this.props.loggedIn ? (
+                    <Login />
+                  ) : (
+                    <div>
+                      <Header />
+                      <NewQuestion />
+                    </div>
+                  )}
+                </Route>
+              </Switch>
             </div>
           ) : (
             <div>
@@ -87,8 +99,14 @@ class App extends Component {
               </Switch>
               <Switch>
                 <Route path="/newQuestion" exact>
-                  <Header />
-                  <NewQuestion />
+                  {this.props.loggedIn ? (
+                    <Login />
+                  ) : (
+                    <div>
+                      <Header />
+                      <NewQuestion />
+                    </div>
+                  )}
                 </Route>
               </Switch>
               <Switch>
