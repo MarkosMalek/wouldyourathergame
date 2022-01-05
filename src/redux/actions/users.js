@@ -1,5 +1,5 @@
 import { GETUSERS, SAVEANSWERTOUSER } from "../Types";
-import { _getUsers, _saveQuestionAnswer, _saveQuestion } from "../../_DATA";
+import { _getUsers, _saveQuestionAnswer } from "../../_DATA";
 export const getUsers = () => (dispatch) => {
   return _getUsers().then((users) => {
     dispatch({
