@@ -25,7 +25,7 @@ class App extends Component {
               </Switch>
               <Switch>
                 <Route path="/" exact>
-                  {this.props.loggedIn ? <Login /> : <Home />}
+                  <Login />
                 </Route>
               </Switch>
               <Switch>
@@ -37,7 +37,7 @@ class App extends Component {
                       ? () => <Login />
                       : (routeProps) => (
                           <div>
-                            <Header />
+                            <Header {...routeProps} />
                             <QuestionView {...routeProps} />
                           </div>
                         )
@@ -53,7 +53,7 @@ class App extends Component {
                       ? () => <Login />
                       : (routeProps) => (
                           <div>
-                            <Header />
+                            <Header {...routeProps} />
                             <QuestionAnswer {...routeProps} />
                           </div>
                         )
@@ -61,16 +61,36 @@ class App extends Component {
                 ></Route>
               </Switch>
               <Switch>
-                <Route path="/newQuestion" exact>
-                  {this.props.loggedIn ? (
-                    <Login />
-                  ) : (
-                    <div>
-                      <Header />
-                      <NewQuestion />
-                    </div>
-                  )}
-                </Route>
+                <Route
+                  path="/newQuestion"
+                  exact
+                  render={
+                    this.props.loggedIn
+                      ? () => <Login />
+                      : (routeProps) => (
+                          <div>
+                            <Header {...routeProps} />
+                            <NewQuestion {...routeProps} />
+                          </div>
+                        )
+                  }
+                ></Route>
+              </Switch>
+              <Switch>
+                <Route
+                  path="/leaderboard"
+                  exact
+                  render={
+                    this.props.loggedIn
+                      ? () => <Login />
+                      : (routeProps) => (
+                          <div>
+                            <Header {...routeProps} />
+                            <LeaderBoard />
+                          </div>
+                        )
+                  }
+                ></Route>
               </Switch>
             </div>
           ) : (
@@ -86,34 +106,52 @@ class App extends Component {
                 </Route>
               </Switch>
               <Switch>
-                <Route path="/" exact>
-                  {this.props.loggedIn ? (
-                    <Login />
-                  ) : (
-                    <div>
-                      <Header />
-                      <Home />
-                    </div>
-                  )}
-                </Route>
+                <Route
+                  path="/"
+                  exact
+                  render={
+                    this.props.loggedIn
+                      ? () => <Login />
+                      : (routeProps) => (
+                          <div>
+                            <Header {...routeProps} />
+                            <Home />
+                          </div>
+                        )
+                  }
+                ></Route>
               </Switch>
               <Switch>
-                <Route path="/newQuestion" exact>
-                  {this.props.loggedIn ? (
-                    <Login />
-                  ) : (
-                    <div>
-                      <Header />
-                      <NewQuestion />
-                    </div>
-                  )}
-                </Route>
+                <Route
+                  path="/newQuestion"
+                  exact
+                  render={
+                    this.props.loggedIn
+                      ? () => <Login />
+                      : (routeProps) => (
+                          <div>
+                            <Header {...routeProps} />
+                            <NewQuestion {...routeProps} />
+                          </div>
+                        )
+                  }
+                ></Route>
               </Switch>
               <Switch>
-                <Route path="/leaderboard" exact>
-                  <Header />
-                  <LeaderBoard />
-                </Route>
+                <Route
+                  path="/leaderboard"
+                  exact
+                  render={
+                    this.props.loggedIn
+                      ? () => <Login />
+                      : (routeProps) => (
+                          <div>
+                            <Header {...routeProps} />
+                            <LeaderBoard />
+                          </div>
+                        )
+                  }
+                ></Route>
               </Switch>
               <Switch>
                 <Route
@@ -124,7 +162,7 @@ class App extends Component {
                       ? () => <Login />
                       : (routeProps) => (
                           <div>
-                            <Header />
+                            <Header {...routeProps} />
                             <QuestionView {...routeProps} />
                           </div>
                         )
@@ -140,7 +178,7 @@ class App extends Component {
                       ? () => <Login />
                       : (routeProps) => (
                           <div>
-                            <Header />
+                            <Header {...routeProps} />
                             <QuestionAnswer {...routeProps} />
                           </div>
                         )

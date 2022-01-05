@@ -8,7 +8,6 @@ function Header(props) {
   const handleClick = (e) => {
     props.dispatch(logOut());
   };
-
   const authentedUser = props.users.filter(
     (user) => user.id === props.authentedUserId
   );
@@ -17,7 +16,7 @@ function Header(props) {
     <div>
       <Navbar bg="light" variant="light">
         <Container>
-          <Nav variant="tabs">
+          <Nav variant="tabs" activeKey={props.location.pathname}>
             <Nav.Item>
               <Nav.Link eventKey="/" as={Link} to="/">
                 Home
